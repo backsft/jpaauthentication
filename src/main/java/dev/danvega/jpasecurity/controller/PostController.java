@@ -1,11 +1,12 @@
 package dev.danvega.jpasecurity.controller;
 
-import dev.danvega.jpasecurity.model.Post;
-import dev.danvega.jpasecurity.repository.PostRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import dev.danvega.jpasecurity.model.Post;
+import dev.danvega.jpasecurity.repository.PostRepository;
 
 @RestController
 @RequestMapping("/api/posts")

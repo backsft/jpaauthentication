@@ -1,6 +1,7 @@
 package dev.danvega.jpasecurity.config;
 
-import dev.danvega.jpasecurity.UserDetailsService.JpaUserDetailsService;
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -10,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.security.config.Customizer.withDefaults;
+import dev.danvega.jpasecurity.UserDetailsService.JpaUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -26,14 +27,14 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf -> csrf.ignoringAntMatchers("/h2-console/**"))
+                .csrf().disable()
                 .authorizeRequests(auth -> auth
-                        .antMatchers("/h2-console/**").permitAll()
-                        .mvcMatchers("/api/posts/**").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/api/posts/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .userDetailsService(myUserDetailsService)
-                .headers(headers -> headers.frameOptions().sameOrigin())
+                //.headers(headers -> headers.frameOptions().sameOrigin())
                 .httpBasic(withDefaults())
                 .build();
     }

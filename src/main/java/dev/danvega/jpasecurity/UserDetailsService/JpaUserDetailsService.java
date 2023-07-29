@@ -1,15 +1,12 @@
 package dev.danvega.jpasecurity.UserDetailsService;
 
-import dev.danvega.jpasecurity.model.SecurityUser;
-import dev.danvega.jpasecurity.model.User;
-import dev.danvega.jpasecurity.repository.UserRepository;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import dev.danvega.jpasecurity.model.SecurityUser;
+import dev.danvega.jpasecurity.repository.UserRepository;
 
 @Service
 public class JpaUserDetailsService implements UserDetailsService {
